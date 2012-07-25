@@ -1,4 +1,29 @@
-mini_graphdb
-============
+# MiniGraphdb
 
-Ruby based light-weight graph database, for fun.
+Mini graph db is meant to be a small toy graph database to use for fun.  Maybe one day it will be a big boy.
+
+## Installation
+
+Add this line to your application's Gemfile:
+
+    gem 'mini_graphdb'
+
+And then execute:
+
+    $ bundle
+
+Or install it yourself as:
+
+    $ gem install mini_graphdb
+
+## Usage
+
+TODO: Write usage instructions here
+
+## Contributing
+
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Added some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
