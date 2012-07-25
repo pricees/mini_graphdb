@@ -3,9 +3,9 @@ require File.expand_path('../lib/mini_graphdb/version', __FILE__)
 
 Gem::Specification.new do |gem|
   gem.authors       = ["Edward Price"]
-  gem.email         = ["ted.price@gmail.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.email         = ["ted.price+minigraphdb@gmail.com"]
+  gem.description   = %q{Toy graph database for ruby}
+  gem.summary       = %q{Toy graph database for ruby}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($\)
