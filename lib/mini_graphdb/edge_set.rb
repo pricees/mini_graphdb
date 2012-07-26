@@ -34,7 +34,7 @@ module MiniGraphdb
 
     private
     def initialize
-      @weights = [] # Hash.new { |hsh, k| hsh[k] = [] }
+      @weights = []
     end
   end
 end
