@@ -18,7 +18,31 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Create a node (subclassed from OpenStruct)
+
+    n = MiniGraphdb::Node.new(type: :person, city: "Chi")
+    n.name = "Fwank"
+
+Create another node, connected it via an edge
+
+    v = MiniGraphdb::Node.new(type: :category, name: "Favorite Vacation Spots")
+    n.outbound_edges << v
+
+    # Set an inbound edge
+    v.inbound_edges << n
+
+Create a few other nodes, you know how to do:
+
+    vs = MiniGraphdb::Node.new(type: :city, name: "Waikiki")
+    v.edges.add(vs, 10)
+
+    vs = MiniGraphdb::Node.new(type: :city, name: "Dubrovnik")
+    v.edges.add(vs, 40)
+
+    vs = MiniGraphdb::Node.new(type: :city, name: "Granada")
+    v.edges.add(vs, 90)
+
+    v.edges.byweight
 
 ## Contributing
 
