@@ -9,13 +9,12 @@ class NodeTest
 
     it "is comparable" do
       n = MiniGraphdb::Node.new(name: :Ted, age: 32)
-      m = MiniGraphdb::Node.new(name: :Ted, age: 32)
+      m = MiniGraphdb::Node.new(n.attributes)
 
-      assert n == m
+      n.must_equal m
 
       m.age = 33
       assert n != m
-
     end
 
     it "has hash of attributes" do
