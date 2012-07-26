@@ -11,9 +11,7 @@ class EdgeSetTest
     it "is a hash of arrays" do
 
       @e.key?(:foo).must_equal false
-
-      assert @e[:foo].is_a?(Array)
-      @e[:foo].must_be_empty
+      @e[:foo].nil?
 
     end
 
@@ -24,9 +22,9 @@ class EdgeSetTest
 
       @e << node
 
-      @e.must_include node
+      @e.must_include             node
       @e.weight?(node).must_equal 0
-      @e.weights[0].must_equal [node]
+      @e.weights[0].must_equal    Set[node]
     end
 
     it "adds node without weighted edge" do
@@ -36,13 +34,12 @@ class EdgeSetTest
 
       @e.add(node, 10)
 
-      @e.must_include node
+      @e.must_include             node
       @e.weight?(node).must_equal 10
-      @e.weights[10].must_equal [node]
+      @e.weights[10].must_equal   Set[node]
     end
 
     it "adds multiple nodes" do
-
       nodes = 4.times.map do |n|
         MiniGraphdb::Node.new(type: "widget_#{n}")
       end
@@ -56,8 +53,22 @@ class EdgeSetTest
       @e.weight?(nodes[1]).must_equal 0
       @e.weight?(nodes[0]).must_equal 15
 
-      @e.weights[100].must_equal [nodes[3], nodes[2]]
-      @e.weights[0].must_equal   [nodes[1]]
+      @e.weights[100].must_equal Set[nodes[3], nodes[2]]
+      @e.weights[0].must_equal   Set[nodes[1]]
+    end
+
+    it "updates nodes" do
+      node = MiniGraphdb::Node.new(name: :foo)
+
+      @e.must_be_empty
+
+      (1..5).each do |wt|
+        @e.add(node, wt)
+
+        @e.weights[wt].must_include node
+        @e.weight?(node).must_equal wt
+        (@e.weights[wt - 1] || []).must_be_empty
+      end
     end
 
     it "sorts_by_weight" do
@@ -73,7 +84,7 @@ class EdgeSetTest
       @e.add(nodes[0], 100)
       @e.add(nodes[3], 100)
 
-      @e.byweight.must_equal nodes.values_at(2, 1, 0, 3)
+      @e.byweight.must_equal Set[nodes[2], nodes[1], nodes[0], nodes[3]]
     end
   end
 end

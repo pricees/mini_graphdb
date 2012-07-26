@@ -1,5 +1,6 @@
-require "ostruct"
 require "mini_graphdb/version"
+require "ostruct"
+require "set"
 
 module MiniGraphdb
   # Your code goes here...

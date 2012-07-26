@@ -7,12 +7,14 @@ class NodeTest
     before do
     end
 
-    it "asserts true" do
-      assert true
+    it "is comparable" do
+      n = MiniGraphdb::Node.new(name: :Ted, age: 32)
+      m = MiniGraphdb::Node.new(name: :Ted, age: 32)
+
+      assert n != m
     end
 
     it "has hash of attributes" do
-
       n = MiniGraphdb::Node.new(name: :Ted, age: 32)
       n.city = "Chicago"
 
