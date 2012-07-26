@@ -16,11 +16,11 @@ module MiniGraphdb
       #
       #  Set#add? returns nil if already part of set
       #
-      #  If the node is added to its current weight, the statement fails
-      #  If it sets, then either the old_wt is nil or it deletes the old node
-      #  in its weight set
-      #
-      #  Technically if it successfully "adds", then old_wt shouldn't be nil
+      #  If a node is added with its current weight,
+      #    the first part of the statement fails
+      #  If the node is added successfully, the second part executes.
+      #  If the old_wt isn't nil, a faithful attempt to delete the node
+      #    from its previous weight array is made
       #
       (@weights[wt] ||= Set.new).add?(node) &&
         (old_wt.nil? || @weights[old_wt].delete(node))
