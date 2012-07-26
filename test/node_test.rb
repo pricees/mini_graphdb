@@ -100,5 +100,17 @@ class NodeTest
         mom.inbound_edges.must_include you
       end
     end
+
+    it "creates recipricol edges" do
+      m = MiniGraphdb::Node.new(name: :foo)
+      n = MiniGraphdb::Node.new(name: :bar)
+      assert m.edges.empty?
+      assert n.edges.empty?
+
+      m.r_edge n
+      m.edges.byweight.must_equal Set[n]
+      n.edges.byweight.must_equal Set[m]
+    end
+
   end
 end

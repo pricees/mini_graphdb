@@ -20,6 +20,11 @@ module MiniGraphdb
     alias_method :outbound, :outbound_edges
     alias_method :edges,    :outbound_edges
 
+    def r_edge(other_node)
+      (self.edges << other_node) && (other_node.edges << self)
+      self
+    end
+
     def attributes
       instance_variable_get(:@table).dup
     end
