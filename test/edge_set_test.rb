@@ -62,7 +62,24 @@ class EdgeSetTest
 
       @e.must_be_empty
 
-      (1..5).each do |wt|
+      (1...10).each do |wt|
+        @e.add(node, wt)
+
+        @e.weights[wt].must_include node
+        @e.weight?(node).must_equal wt
+
+        (@e.weights[wt - 1] || []).must_be_empty
+      end
+    end
+
+    it "doesn't update if weight unchanged" do
+      node = MiniGraphdb::Node.new(name: :foo)
+
+      @e.must_be_empty
+
+      5.times do
+
+        wt = 1
         @e.add(node, wt)
 
         @e.weights[wt].must_include node
