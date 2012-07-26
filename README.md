@@ -23,24 +23,23 @@ Create a node (subclassed from OpenStruct)
     n = MiniGraphdb::Node.new(type: :person, city: "Chi")
     n.name = "Fwank"
 
-Create another node, connected it via an edge
+Create another node, connect with an edge, giving no weight
 
     v = MiniGraphdb::Node.new(type: :category, name: "Favorite Vacation Spots")
+
     n.outbound_edges << v
+    v.inbound_edges  << n
 
-    # Set an inbound edge
-    v.inbound_edges << n
-
-Create a few other nodes, you know how to do:
+Create a few other nodes, add to the outbound edges with a weight
 
     vs = MiniGraphdb::Node.new(type: :city, name: "Waikiki")
-    v.edges.add(vs, 10)
+    v.edges.add(vs, 45)
 
     vs = MiniGraphdb::Node.new(type: :city, name: "Dubrovnik")
-    v.edges.add(vs, 40)
-
-    vs = MiniGraphdb::Node.new(type: :city, name: "Granada")
     v.edges.add(vs, 90)
+
+    vs = MiniGraphdb::Node.new(type: :city, name: "Geneva")
+    v.edges.add(vs, 15)
 
     v.edges.byweight
 
