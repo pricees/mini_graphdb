@@ -1,8 +1,12 @@
 module MiniGraphdb
   class Node < OpenStruct
 
+    def id
+      attributes.hash
+    end
+
     def == (other_node)
-      object_id == other_node.object_id
+      id == other_node.id
     end
 
     def inbound_edges

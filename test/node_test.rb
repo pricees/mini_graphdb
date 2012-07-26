@@ -11,7 +11,11 @@ class NodeTest
       n = MiniGraphdb::Node.new(name: :Ted, age: 32)
       m = MiniGraphdb::Node.new(name: :Ted, age: 32)
 
+      assert n == m
+
+      m.age = 33
       assert n != m
+
     end
 
     it "has hash of attributes" do
