@@ -54,9 +54,32 @@ class NodeTest
           f = MiniGraphdb::Node.new(name: name)
           @me.outbound_edges.add(f, wt)
         end
+      end
+
+
+      it "has outbound edges contecting nodes" do
+
+        names = %w(Raleigh Ryan Jason)
+
+        names.each_with_index do |name, wt|
+          f = MiniGraphdb::Node.new(name: name)
+          @me.outbound_edges.add(f, wt)
+        end
 
         assert_equal @me.outbound_edges, @me.outbound
         assert_equal @me.outbound_edges, @me.edges
+
+        @me.outbound_edges.byweight.map(&:name).must_equal names
+      end
+
+      it "has outbound edges contecting nodes of the same weight" do
+
+        names = %w(Raleigh Ryan Jason)
+
+        names.each_with_index do |name, wt|
+          f = MiniGraphdb::Node.new(name: name)
+          @me.edges << f
+        end
 
         @me.outbound_edges.byweight.map(&:name).must_equal names
       end
@@ -110,6 +133,14 @@ class NodeTest
       m.r_edge n
       m.edges.byweight.must_equal Set[n]
       n.edges.byweight.must_equal Set[m]
+
+
+      o = MiniGraphdb::Node.new(name: :baz)
+      m.r_edge o
+
+      m.edges.byweight.must_equal Set[n, o]
+      n.edges.byweight.must_equal Set[m]
+      o.edges.byweight.must_equal Set[m]
     end
 
   end
