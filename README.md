@@ -18,6 +18,18 @@ Or install it yourself as:
 
 ## Usage
 
+Create a "simple graph" using an array of vertices
+
+    v = [ [ 1, 3 ], [ 1, 2 ], [ 2, 11 ], ]
+
+   graph = MiniGraphdb.simple_graph(v)
+
+   (1) <-> (3)
+    |
+   (2) <-> (11)
+
+Create a "complex graph" specifying in/out bound edges, weights, etc.
+
 Create a node (subclassed from OpenStruct)
 
     n = MiniGraphdb::Node.new(type: :person, city: "Chi")
