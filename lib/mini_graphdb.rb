@@ -12,7 +12,6 @@ module MiniGraphdb
   #
   # <tt>vertices</tt>  [ [a_node_val, other_node_val] ]
   #
-  #
   def simple_graph(vertices, klass = MiniGraphdb::Node)
     nodes = Hash.new { |hsh, k| hsh[k] = klass.new(val: k) }
 
@@ -44,8 +43,6 @@ module MiniGraphdb
   #   ]
   # }
   #
-  #
-
   def complex_graph(vertices, klass = MiniGraphdb::Node)
     nodes = Hash.new { |hsh, k| hsh[k] = klass.new(val: k) }
 
@@ -61,12 +58,13 @@ module MiniGraphdb
       raise "Vertices, #{vertices.class}, must be Hash or Array"
     end
 
-    add_print_method(nodes)
+    add_print_graph(nodes)
 
     nodes
   end
 
   private
+
   #
   #  == Add Edges ==
   #  ::nodes <tt>hash of nodes</tt>
@@ -84,7 +82,7 @@ module MiniGraphdb
     nodes
   end
 
-  def add_print_method(nodes)
+  def add_print_graph(nodes)
     def nodes.print_graph
       values.each do |node|
         [ :inbound, :outbound ].each do |edge_type|
