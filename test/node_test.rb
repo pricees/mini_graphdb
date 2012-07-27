@@ -139,5 +139,22 @@ class NodeTest
       m.edges.byweight.map(&:name).sort.must_equal %w(bar baz)
     end
 
+    it "creates complimentary edges" do
+
+      m = MiniGraphdb::Node.new(name: :foo)
+
+      nodes = { m.name => m }
+
+      %w(bar baz).each do |name|
+        nodes[name] = MiniGraphdb::Node.new(name: name)
+
+        m.c_edge(nodes[name])
+      end
+
+      m.outbound_edges.byweight.map(&:name).sort.must_equal %w(bar baz)
+      nodes["baz"].inbound_edges.byweight.must_equal Set[m]
+      nodes["bar"].inbound_edges.byweight.must_equal Set[m]
+    end
+
   end
 end

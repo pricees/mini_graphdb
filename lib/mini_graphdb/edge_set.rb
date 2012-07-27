@@ -29,7 +29,7 @@ module MiniGraphdb
     alias_method :<<, :add
 
     def byweight
-      @weights.compact.inject(:+)
+      @weights.compact.inject(:+) || Set.new
     end
 
     private
