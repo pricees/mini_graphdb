@@ -125,22 +125,18 @@ class NodeTest
     end
 
     it "creates recipricol edges" do
+
       m = MiniGraphdb::Node.new(name: :foo)
-      n = MiniGraphdb::Node.new(name: :bar)
       assert m.edges.empty?
-      assert n.edges.empty?
 
-      m.r_edge n
-      m.edges.byweight.must_equal Set[n]
-      n.edges.byweight.must_equal Set[m]
+      %w(bar baz).each_with_index do |name, i|
 
+        n = MiniGraphdb::Node.new(name: name)
+        assert n.edges.empty?
+        m.r_edge n
+      end
 
-      o = MiniGraphdb::Node.new(name: :baz)
-      m.r_edge o
-
-      m.edges.byweight.must_equal Set[n, o]
-      n.edges.byweight.must_equal Set[m]
-      o.edges.byweight.must_equal Set[m]
+      m.edges.byweight.map(&:name).sort.must_equal %w(bar baz)
     end
 
   end
