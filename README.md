@@ -21,8 +21,7 @@ Or install it yourself as:
 Create a "simple graph" using an array of vertices
 
     v = [ [ 1, 3 ], [ 1, 2 ], [ 2, 11 ], ]
-
-   graph = MiniGraphdb.simple_graph(v)
+    graph = MiniGraphdb.simple_graph(v)
 
    (1) <-> (3)
     |
