@@ -2,7 +2,8 @@
 
 MiniGraphdb is a minimal in-memory graph library for Ruby.
 
-# Why? Where is it going?
+## Why? Where is it going?
+
 I was going back through "Algorithms in a Nutshell" and I hit the Graph chapter.
 After looking for some toy graph libraries for Ruby, to no avail, I was like:
 "Shoot mang, I finna code this myself."
