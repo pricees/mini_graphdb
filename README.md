@@ -1,6 +1,16 @@
 # MiniGraphdb
 
-Mini graph db is meant to be a small toy graph database to use for fun.  Maybe one day it will be a big boy.
+MiniGraphdb is a minimal in-memory graph library for Ruby.
+
+# Why? Where is it going?
+I was going back through "Algorithms in a Nutshell" and I hit the Graph chapter.
+After looking for some toy graph libraries for Ruby, to no avail, I was like:
+"Shoot mang, I finna code this myself."
+So I did.
+
+Currently, its meant to be an educational toy.
+I would like to expose an adapter to save snapshots to a data store (Redis).
+I am going to run benchmarks against this monkey, a mem profiler, perhaps it will grow-up one day.
 
 ## Installation
 
