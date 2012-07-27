@@ -72,7 +72,6 @@ module MiniGraphdb
   #  ::edge_type <tt>:inbound_edges, :outbound_edges</tt>
   #
   def add_edges(nodes, ary, edge_type)
-
     ary && ary.each do |a_node, other_node, wt|
       nodes[a_node].
         send(edge_type).
@@ -91,6 +90,7 @@ module MiniGraphdb
         end
       end
     end
+
     nodes
   end
 
